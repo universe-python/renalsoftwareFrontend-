@@ -64,6 +64,43 @@
 
     </div>
 
+
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const inputs = document.querySelectorAll("input[maxlength='1']");
+
+    inputs.forEach((input, index) => {
+      input.addEventListener("input", (e) => {
+        const value = e.target.value;
+        if (value.length === 1 && index < inputs.length - 1) {
+          inputs[index + 1].focus();
+        }
+      });
+
+      input.addEventListener("keydown", (e) => {
+        if (e.key === "Backspace" && input.value === "" && index > 0) {
+          inputs[index - 1].focus();
+        }
+      });
+
+      input.addEventListener("paste", (e) => {
+        e.preventDefault();
+        const pasteData = (e.clipboardData || window.clipboardData)
+          .getData("text")
+          .trim();
+        if (!pasteData) return;
+
+        for (let i = 0; i < inputs.length; i++) {
+          inputs[i].value = pasteData[i] ? pasteData[i] : "";
+        }
+
+        const lastFilled = Math.min(pasteData.length, inputs.length) - 1;
+        if (lastFilled >= 0) inputs[lastFilled].focus();
+      });
+    });
+  });
+</script>
+
 </body>
 
 </html>
