@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>বাড়ি ভাড়া - সম্পূর্ণ ব্যবস্থাপনা সিস্টেম</title>
+    <title>House Rental - Complete Management System</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
@@ -21,12 +21,12 @@
         <div class="container mx-auto px-4 py-3 flex justify-between items-center">
             <div class="flex items-center">
                 <i class="fas fa-home text-2xl mr-2"></i>
-                <h1 class="text-xl font-bold">বাড়ি ভাড়া ব্যবস্থাপনা</h1>
+                <h1 class="text-xl font-bold">House Rent Management</h1>
             </div>
             
             <div class="flex items-center space-x-4">
-                <button id="loginBtn" class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">লগইন</button>
-                <button id="registerBtn" class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600">রেজিস্টার</button>
+                <button id="loginBtn" class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">Login</button>
+                <button id="registerBtn" class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600">Register</button>
                 <button class="md:hidden" id="menu-toggle">
                     <i class="fas fa-bars text-xl"></i>
                 </button>
@@ -37,20 +37,20 @@
     <!-- Hero Section -->
     <section class="bg-gradient-to-r from-blue-500 to-blue-700 text-white py-12">
         <div class="container mx-auto px-4 text-center">
-            <h2 class="text-3xl font-bold mb-4">বাড়ি ভাড়া ব্যবস্থাপনা সিস্টেম</h2>
-            <p class="mb-6 text-lg">আপনার বাড়ি ভাড়ার সমস্ত তথ্য এক জায়গায় সংরক্ষণ করুন</p>
+            <h2 class="text-3xl font-bold mb-4">House Rent Management System</h2>
+            <p class="mb-6 text-lg">Store All Your Home Rental Information in One Place.</p>
             <div class="flex flex-wrap justify-center gap-4">
                 <div class="bg-white bg-opacity-20 rounded-lg p-4">
                     <i class="fas fa-home text-3xl mb-2"></i>
-                    <p>বাড়ি ও ফ্ল্যাট যোগ করুন</p>
+                    <p>Add Houses and Flats</p>
                 </div>
                 <div class="bg-white bg-opacity-20 rounded-lg p-4">
                     <i class="fas fa-money-bill-wave text-3xl mb-2"></i>
-                    <p>ভাড়া আদায়ের হিসাব রাখুন</p>
+                    <p>Keep Track of Rent Collection</p>
                 </div>
                 <div class="bg-white bg-opacity-20 rounded-lg p-4">
                     <i class="fas fa-chart-line text-3xl mb-2"></i>
-                    <p>ড্যাশবোর্ড থেকে সব দেখুন</p>
+                    <p>See All From The Dashboard</p>
                 </div>
             </div>
         </div>
@@ -58,43 +58,43 @@
 
     <!-- Features Section -->
     <section class="container mx-auto px-4 py-12">
-        <h2 class="text-2xl font-bold text-center mb-8">সিস্টেমের বৈশিষ্ট্যসমূহ</h2>
+        <h2 class="text-2xl font-bold text-center mb-8"> System Features </h2>
         
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             <div class="bg-white rounded-lg shadow-md p-6 text-center property-card">
                 <i class="fas fa-home text-4xl text-blue-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">বাড়ি ও ফ্ল্যাট ব্যবস্থাপনা</h3>
-                <p class="text-gray-600">আপনার সকল বাড়ি ও ফ্ল্যাটের তথ্য সংরক্ষণ করুন এবং ব্যবস্থাপনা করুন সহজেই</p>
+                <h3 class="text-xl font-semibold mb-2">House and Flat Management</h3>
+                <p class="text-gray-600">Easily store and manage all your house and flat information.</p>
             </div>
             
             <div class="bg-white rounded-lg shadow-md p-6 text-center property-card">
                 <i class="fas fa-money-bill-wave text-4xl text-green-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">ভাড়া আদায় ব্যবস্থাপনা</h3>
-                <p class="text-gray-600">কে ভাড়া দিয়েছে আর কে দেয়নি তার সম্পূর্ণ রেকর্ড রাখুন</p>
+                <h3 class="text-xl font-semibold mb-2">Management of Rent Collection</h3>
+                <p class="text-gray-600">Keep complete records of who has paid rent and who has not.</p>
             </div>
             
             <div class="bg-white rounded-lg shadow-md p-6 text-center property-card">
                 <i class="fas fa-chart-pie text-4xl text-purple-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">বিশ্লেষণ ও রিপোর্ট</h3>
-                <p class="text-gray-600">আপনার আয়ের সম্পূর্ণ বিশ্লেষণ এবং মাসিক রিপোর্ট দেখুন</p>
+                <h3 class="text-xl font-semibold mb-2">Analysis and Reporting</h3>
+                <p class="text-gray-600">View complete analysis and monthly reports of your income.</p>
             </div>
             
             <div class="bg-white rounded-lg shadow-md p-6 text-center property-card">
                 <i class="fas fa-mobile-alt text-4xl text-red-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">মোবাইল বান্ধব</h3>
-                <p class="text-gray-600">যেকোনো ডিভাইস থেকে অ্যাক্সেস করুন সম্পূর্ণ রেসপন্সিভ ডিজাইন</p>
+                <h3 class="text-xl font-semibold mb-2">Mobile Friendly</h3>
+                <p class="text-gray-600">Access from any device Fully responsive design</p>
             </div>
             
             <div class="bg-white rounded-lg shadow-md p-6 text-center property-card">
                 <i class="fas fa-bell text-4xl text-yellow-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">অটো রিমাইন্ডার</h3>
-                <p class="text-gray-600">ভাড়া পরিশোধের জন্য অটোমেটিক রিমাইন্ডার পাঠান ভাড়াটিয়াদের</p>
+                <h3 class="text-xl font-semibold mb-2">Auto Reminder</h3>
+                <p class="text-gray-600">Send Automatic Reminders to Tenants to Pay Rent</p>
             </div>
             
             <div class="bg-white rounded-lg shadow-md p-6 text-center property-card">
                 <i class="fas fa-database text-4xl text-indigo-500 mb-4"></i>
-                <h3 class="text-xl font-semibold mb-2">ডেটা ব্যাকআপ</h3>
-                <p class="text-gray-600">আপনার সমস্ত ডেটা নিরাপদে রাখা হয় ক্লাউড স্টোরেজে</p>
+                <h3 class="text-xl font-semibold mb-2">Data Backup</h3>
+                <p class="text-gray-600">All your data is kept safely in cloud storage.</p>
             </div>
         </div>
     </section>
@@ -104,27 +104,27 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">বাড়ি ভাড়া ব্যবস্থাপনা</h3>
-                    <p>আপনার বাড়ি ভাড়ার ব্যবস্থাপনাকে সহজ এবং কার্যকর করুন আমাদের সিস্টেমের মাধ্যমে</p>
+                    <h3 class="text-xl font-semibold mb-4">House Rent Management</h3>
+                    <p>Make your rental management simple and effective with our system.</p>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">দ্রুত লিংক</h3>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
                     <ul class="space-y-2">
-                        <li><a href="#" class="hover:text-blue-300">হোম</a></li>
-                        <li><a href="#" class="hover:text-blue-300">বৈশিষ্ট্য</a></li>
-                        <li><a href="#" class="hover:text-blue-300">মূল্য নির্ধারণ</a></li>
-                        <li><a href="#" class="hover:text-blue-300">যোগাযোগ</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Home</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Features</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Pricing</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Contact</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h3 class="text-xl font-semibold mb-4">যোগাযোগ</h3>
-                    <p><i class="fas fa-map-marker-alt mr-2"></i> Keranigonj, ঢাকা</p>
-                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +৮৮০ ১৭০০০০০০০০০</p>
+                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> Keranigonj, Dhaka</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +880 17000000000</p>
                     <p><i class="fas fa-envelope mr-2"></i> info@barivara.com</p>
                 </div>
             </div>
             <div class="border-t border-gray-700 mt-8 pt-6 text-center">
-                <p>&copy; ২০২৫ বাড়ি ভাড়া ব্যবস্থাপনা - সকল অধিকার সংরক্ষিত</p>
+                <p>&copy; 2025 House Rent Management - All Rights Reserved.</p>
             </div>
         </div>
     </footer>
