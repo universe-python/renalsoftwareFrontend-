@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>বাড়ি যোগ করুন - বাড়ি ভাড়া ব্যবস্থাপনা</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; }
+        .input-field:focus { outline: none; box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5); }
+    </style>
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-home text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold">বাড়ি ভাড়া ব্যবস্থাপনা</h1>
+            </div>
+            <button class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">
+                ড্যাশবোর্ড
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+
+        <div class="flex flex-col md:flex-row gap-6">
+             <!-- Navigation -->
+            <div class="dashboard-nav bg-white rounded-lg shadow-md p-4 w-full md:w-1/4">
+                <ul class="space-y-7">
+                    <li><a href="index.html" class="w-full text-left px-4 py-2"><i class="fa-solid fa-table-columns"></i> ড্যাশবোর্ড</a></li>
+                    <li><a href="add_house.html" class="w-full text-left px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold"><i class="fa-solid fa-house"></i> বাড়ি যোগ করুন</a></li>
+                    <li><a href="add_flat.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i class="fa-solid fa-building"></i> ফ্ল্যাট যোগ করুন</a></li>
+                    <li><a href="rent_collection.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i class="fa-solid fa-money-bill-wave"></i> ভাড়া আদায়</a></li>
+                    <li><a href="account_statement.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i class="fa-solid fa-calculator"></i> হিসাব বিবরণী</a></li>
+                    <li><a href="profile.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i class="fa-solid fa-user"></i> প্রোফাইল</a></li>
+                    <li><a href="logout.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i class="fa-solid fa-right-from-bracket"></i> লগআউট</a></li>
+                </ul>
+            </div>
+
+            <div class="w-full">
+            <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                <!-- Form Header -->
+                <div class="bg-blue-600 text-white px-6 py-4">
+                    <h2 class="text-2xl font-bold">নতুন বাড়ি যোগ করুন</h2>
+                    <p>আপনার বাড়ির তথ্য সঠিকভাবে পূরণ করুন</p>
+                </div>
+                
+                <!-- Progress Steps -->
+                <div class="px-6 py-4 border-b">
+                    <div class="flex justify-between items-center">
+                        <div class="flex items-center text-blue-600">
+                            <div class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center">1</div>
+                            <span class="ml-2">বেসিক তথ্য</span>
+                        </div>
+                        <div class="h-1 w-1/4 bg-blue-100 mx-2"></div>
+                        <div class="flex items-center text-gray-400">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">2</div>
+                            <span class="ml-2">ফ্ল্যাট তথ্য</span>
+                        </div>
+                        <div class="h-1 w-1/4 bg-gray-100 mx-2"></div>
+                        <div class="flex items-center text-gray-400">
+                            <div class="w-8 h-8 rounded-full bg-gray-100 flex items-center justify-center">3</div>
+                            <span class="ml-2">নিশ্চিতকরণ</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Form Content -->
+                <form class="px-6 py-6">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <!-- Left Column -->
+                        <div>
+                            <!-- Building Name -->
+                            <div class="mb-5">
+                                <label class="block text-gray-700 mb-2 font-medium">বাড়ির নাম <span class="text-red-500">*</span></label>
+                                <input type="text" placeholder="বাড়ির নাম লিখুন" 
+                                    class="w-full px-4 py-3 border rounded-lg input-field focus:border-blue-500">
+                            </div>
+                            
+                            <!-- Address -->
+                            <div class="mb-5">
+                                <label class="block text-gray-700 mb-2 font-medium">সম্পূর্ণ ঠিকানা <span class="text-red-500">*</span></label>
+                                <textarea placeholder="বাড়ির সম্পূর্ণ ঠিকানা লিখুন" 
+                                    class="w-full px-4 py-3 border rounded-lg input-field focus:border-blue-500 h-24"></textarea>
+                            </div>
+                            
+                            <!-- Area -->
+                            <div class="mb-5">
+                                <label class="block text-gray-700 mb-2 font-medium">এলাকা <span class="text-red-500">*</span></label>
+                                <select class="w-full px-4 py-3 border rounded-lg input-field focus:border-blue-500">
+                                    <option value="">এলাকা নির্বাচন করুন</option>
+                                    <option value="ধানমন্ডি">ধানমন্ডি</option>
+                                    <option value="গুলশান">গুলশান</option>
+                                    <option value="বনানী">বনানী</option>
+                                    <option value="মিরপুর">মিরপুর</option>
+                                    <option value="উত্তরা">উত্তরা</option>
+                                    <option value="ঢাকার其他">অন্যান্য</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <!-- Right Column -->
+                        <div>
+                            <!-- Number of Flats -->
+                            <div class="mb-5">
+                                <label class="block text-gray-700 mb-2 font-medium">ফ্ল্যাট সংখ্যা <span class="text-red-500">*</span></label>
+                                <input type="number" min="1" placeholder="মোট ফ্ল্যাট সংখ্যা" 
+                                    class="w-full px-4 py-3 border rounded-lg input-field focus:border-blue-500">
+                            </div>
+                            
+                            <!-- Total Floors -->
+                            <div class="mb-5">
+                                <label class="block text-gray-700 mb-2 font-medium">মোট তলা সংখ্যা <span class="text-red-500">*</span></label>
+                                <input type="number" min="1" placeholder="মোট তলা সংখ্যা" 
+                                    class="w-full px-4 py-3 border rounded-lg input-field focus:border-blue-500">
+                            </div>
+                            
+                            <!-- Rent per Flat -->
+                            <div class="mb-5">
+                                <label class="block text-gray-700 mb-2 font-medium">প্রতি ফ্ল্যাট ভাড়া (৳) <span class="text-red-500">*</span></label>
+                                <input type="number" min="0" placeholder="প্রতি ফ্ল্যাটের ভাড়া" 
+                                    class="w-full px-4 py-3 border rounded-lg input-field focus:border-blue-500">
+                            </div>
+                        </div>
+                    </div>
+                    
+                    
+                    
+                    <!-- Image Upload -->
+                    <div class="mt-8">
+                        <label class="block text-gray-700 mb-3 font-medium">বাড়ির ছবি আপলোড করুন</label>
+                        <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                            <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                            <p class="text-gray-500 mb-2">ছবি এখানে ড্রপ করুন বা ক্লিক করে Sele করুন</p>
+                            <label for="file-upload" class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-200">
+                                <span>ফাইল Sele করুন</span>
+                                <input id="file-upload" type="file" class="hidden" multiple>
+                            </label>
+                            <p class="text-sm text-gray-400 mt-2">PNG, JPG, GIF 10MB পর্যন্ত</p>
+                        </div>
+                    </div>
+                    
+                    <!-- Form Buttons -->
+                    <div class="mt-10 flex justify-between">
+                        <button type="button" class="px-6 py-3 border border-gray-300 rounded-lg text-gray-700 hover:bg-gray-100">
+                            <i class="fas fa-arrow-left mr-2"></i>পিছনে
+                        </button>
+                        <button type="submit" class="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700">
+                            পরবর্তী ধাপ <i class="fas fa-arrow-right ml-2"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+            
+            
+        </div>
+
+        </div>
+
+        
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">বাড়ি ভাড়া ব্যবস্থাপনা</h3>
+                    <p>আপনার বাড়ি ভাড়ার ব্যবস্থাপনাকে সহজ এবং কার্যকর করুন আমাদের সিস্টেমের মাধ্যমে</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">দ্রুত লিংক</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300">হোম</a></li>
+                        <li><a href="#" class="hover:text-blue-300">বৈশিষ্ট্য</a></li>
+                        <li><a href="#" class="hover:text-blue-300">মূল্য নির্ধারণ</a></li>
+                        <li><a href="#" class="hover:text-blue-300">যোগাযোগ</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">যোগাযোগ</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> Keranigonj, ঢাকা</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +৮৮০ ১৭০০০০০০০০০</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@barivara.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>&copy; ২০২৫ বাড়ি ভাড়া ব্যবস্থাপনা - সকল অধিকার সংরক্ষিত</p>
+            </div>
+        </div>
+    </footer>
+    
+
+    <script>
+        // Form submission handling
+        document.querySelector('form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('বাড়ির তথ্য সফলভাবে যোগ করা হয়েছে! পরবর্তী ধাপে যান।');
+        });
+        
+        // File upload preview handling
+        document.getElementById('file-upload').addEventListener('change', function(e) {
+            if (this.files.length > 0) {
+                document.querySelector('.border-dashed p').textContent = this.files.length + 'টি ফাইল Sele করা হয়েছে';
+            }
+        });
+    </script>
+</body>
+</html>
