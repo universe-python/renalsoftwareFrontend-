@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add House - House Rental Management</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .input-field:focus {
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 min-h-screen">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-home text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold">House Rental Management</h1>
+            </div>
+            <button class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">
+                Dashboard
+            </button>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Navigation -->
+            <div class="dashboard-nav bg-white rounded-lg shadow-md p-4 w-full md:w-1/4">
+                <ul class="space-y-7">
+                    <li><a href="dashboard.html"
+                            class="w-full text-left px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold"><i
+                                class="fa-solid fa-list"></i> Dashboard</a></li>
+                    <li><a href="add_house.html" class="w-full text-left px-4 py-2"><i class="fa-solid fa-house"></i>
+                            Add House</a></li>
+                    <li><a href="add_flat.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                                class="fa-solid fa-building"></i> Add Flat</a></li>
+                    <li><a href="rent_collection.html"
+                            class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                                class="fa-solid fa-money-bill-wave"></i> Rent Collection</a></li>
+                    <li><a href="account_statement.html"
+                            class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                                class="fa-solid fa-calculator"></i> Account Statement</a></li>
+                    <li><a href="create_flat_user.html"
+                            class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                                class="fa-solid fa-user-plus"></i> Create Flat User</a></li>
+                    <li><a href="profile.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                                class="fa-solid fa-user"></i> Profile</a></li>
+                    <li><a href="logout.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                                class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+                </ul>
+            </div>
+
+            <!-- Step 1 -->
+            <div class="w-full" id="step-1">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden">
+                    <!-- Form Header -->
+                    <div class="bg-blue-600 text-white px-6 py-4">
+                        <h2 class="text-2xl font-bold">Create Flat User</h2>
+                        <p>Fill in your flat user information correctly</p>
+                    </div>
+
+                    <!-- Create Tenant Tab -->
+                    <div id="create-tenant-tab" class="tab-content">
+
+                        <div class="bg-white rounded-lg shadow-md p-6">
+                            <form>
+                                <div class="mb-6">
+                                    <label class="block text-gray-700 mb-2 font-medium">Select Flat <span
+                                            class="text-red-500">*</span></label>
+                                    <select
+                                        class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">Select Flat</option>
+                                        <option value="a-2">A-2 (Green View) - Vacant</option>
+                                        <option value="b-3">B-3 (Riverside) - Vacant</option>
+                                        <option value="c-1">C-1 (Sunflower) - Empty</option>
+                                    </select>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Rental Name <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="text"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Enter rental name">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Rental Type <span
+                                                    class="text-red-500">*</span></label>
+                                            <select
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                                <option value="">select</option>
+                                                <option value="bachelor">Bachelor</option>
+                                                <option value="family">Family</option>
+                                                <option value="office">Office</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Advance Amount (৳) <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="number"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Enter advance amount">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Mobile number <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="text"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Enter mobile number">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Address <span
+                                                    class="text-red-500">*</span></label>
+                                            <textarea
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                rows="3" placeholder="Enter address"></textarea>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <label class="block text-gray-700 font-medium mb-2">NID (front page)</label>
+                                            <div
+                                                class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                                <i class="fa-solid fa-address-card text-4xl text-gray-400 mb-3"></i>
+                                                <p class="text-gray-500 mb-2">Drop NID (front page) here or click to
+                                                    select</p>
+                                                <label for="nid-front-upload"
+                                                    class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-200">
+                                                    <span>Select File</span>
+                                                    <input id="nid-front-upload" type="file" class="hidden"
+                                                        accept="image/*">
+                                                </label>
+                                                <p class="text-sm text-gray-400 mt-2">PNG, JPG, GIF up to 5MB</p>
+                                                <!-- Image preview -->
+                                                <img id="nid-front-preview"
+                                                    class="mx-auto mt-4 max-h-48 object-cover hidden">
+                                            </div>
+                                        </div>
+
+                                        <div class="mt-6">
+                                            <label class="block text-gray-700 font-medium mb-2">NID (back page)</label>
+                                            <div
+                                                class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                                                <i class="fa-solid fa-address-card text-4xl text-gray-400 mb-3"></i>
+                                                <p class="text-gray-500 mb-2">Drop NID (back page) here or click to
+                                                    select</p>
+                                                <label for="nid-back-upload"
+                                                    class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-200">
+                                                    <span>Select File</span>
+                                                    <input id="nid-back-upload" type="file" class="hidden"
+                                                        accept="image/*">
+                                                </label>
+                                                <p class="text-sm text-gray-400 mt-2">PNG, JPG, GIF up to 5MB</p>
+                                                <!-- Image preview -->
+                                                <img id="nid-back-preview"
+                                                    class="mx-auto mt-4 max-h-48 object-cover hidden">
+                                            </div>
+                                        </div>
+
+
+                                    </div>
+                                </div>
+
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                                    <div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Flat Seat Date <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="date"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Select date">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Monthly rent (৳) <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="number"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Enter monthly rent">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Password <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="password"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Enter password">
+                                        </div>
+                                        <div class="mb-4">
+                                            <label class="block text-gray-700 mb-2 font-medium">Confirm password <span
+                                                    class="text-red-500">*</span></label>
+                                            <input type="password"
+                                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                                placeholder="Confirm password">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mt-8 flex justify-end">
+                                    <button type="submit"
+                                        class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Create
+                                        Flat User</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">House Rental Management</h3>
+                    <p>Make managing your house rental easy and efficient with our system</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300">Home</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Features</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Pricing</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> Keranigonj, Dhaka</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +880 1700000000</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@barivara.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>&copy; 2025 House Rental Management - All rights reserved</p>
+            </div>
+        </div>
+    </footer>
+
+
+    <script>
+        function previewImage(inputId, previewId) {
+            const fileInput = document.getElementById(inputId);
+            const imgPreview = document.getElementById(previewId);
+
+            fileInput.addEventListener('change', function () {
+                if (this.files && this.files[0]) {
+                    const reader = new FileReader();
+                    reader.onload = function (e) {
+                        imgPreview.src = e.target.result;
+                        imgPreview.classList.remove('hidden');
+                    }
+                    reader.readAsDataURL(this.files[0]);
+                } else {
+                    imgPreview.src = '';
+                    imgPreview.classList.add('hidden');
+                }
+            });
+        }
+
+        // Call for each input
+        previewImage('nid-front-upload', 'nid-front-preview');
+        previewImage('nid-back-upload', 'nid-back-preview');
+    </script>
+
+
+</body>
+
+</html>

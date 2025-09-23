@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="bn">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Rent Collection - House Rental Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+      body {
+        font-family: 'Hind Siliguri', sans-serif;
+      }
+      .property-card {
+        transition: transform 0.3s;
+      }
+      .property-card:hover {
+        transform: translateY(-5px);
+      }
+      .dashboard-nav {
+        min-height: calc(100vh - 4rem);
+      }
+      .tenant-row:hover {
+        background-color: #f7fafc;
+      }
+      .progress-bar {
+        transition: width 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+      <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+        <div class="flex items-center">
+          <i class="fas fa-home text-2xl mr-2"></i>
+          <h1 class="text-xl font-bold">House Rent Management</h1>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <button id="loginBtn" class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">Login</button>
+          <button id="registerBtn" class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600">Register</button>
+          <button class="md:hidden" id="menu-toggle"><i class="fas fa-bars text-xl"></i></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="container mx-auto flex flex-col md:flex-row gap-6 px-4 py-8">
+      <!-- Navigation -->
+      <div class="dashboard-nav bg-white rounded-lg shadow-md p-4 w-full md:w-1/4">
+        <ul class="space-y-7">
+          <li><a href="dashboard.html"
+              class="w-full text-left px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold"><i
+                class="fa-solid fa-list"></i> Dashboard</a></li>
+          <li><a href="add_house.html" class="w-full text-left px-4 py-2"><i class="fa-solid fa-house"></i> Add House</a></li>
+          <li><a href="add_flat.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                class="fa-solid fa-building"></i> Add Flat</a></li>
+          <li><a href="rent_collection.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                class="fa-solid fa-money-bill-wave"></i> Rent Collection</a></li>
+          <li><a href="account_statement.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                class="fa-solid fa-calculator"></i> Account Statement</a></li>
+          <li><a href="create_flat_user.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                class="fa-solid fa-user-plus"></i> Create Flat User</a></li>
+          <li><a href="profile.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                class="fa-solid fa-user"></i> Profile</a></li>
+          <li><a href="logout.html" class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"><i
+                class="fa-solid fa-right-from-bracket"></i> Logout</a></li>
+        </ul>
+      </div>
+      <!-- Main Content -->
+      <div class="container mx-auto px-4 py-8">
+        <!-- Page Header -->
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+          <div>
+            <h2 class="text-2xl font-bold text-gray-800">Rent Collection</h2>
+            <p class="text-gray-600">Manage and track rent payments from your tenants</p>
+          </div>
+          <div class="mt-4 md:mt-0 flex space-x-2">
+            <div class="relative">
+              <select class="appearance-none bg-white border border-gray-300 rounded-lg py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option>All Properties</option>
+                <option>Green Valley Apartments</option>
+                <option>Sunrise Homes</option>
+                <option>River View Complex</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <div class="relative">
+              <select class="appearance-none bg-white border border-gray-300 rounded-lg py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                <option>March 2025</option>
+                <option>February 2025</option>
+                <option>January 2025</option>
+                <option>December 2024</option>
+              </select>
+              <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700">
+                <i class="fas fa-chevron-down"></i>
+              </div>
+            </div>
+            <button class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700"><i class="fas fa-plus mr-2"></i>Add Payment</button>
+          </div>
+        </div>
+
+        <!-- Summary Cards -->
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Total Tenants</p>
+                <h3 class="text-2xl font-bold text-blue-600">12</h3>
+              </div>
+              <div class="bg-blue-100 p-3 rounded-full">
+                <i class="fas fa-users text-blue-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">3 new this month</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Rent Collected</p>
+                <h3 class="text-2xl font-bold text-green-600">৳ 68,500</h3>
+              </div>
+              <div class="bg-green-100 p-3 rounded-full">
+                <i class="fas fa-money-check text-green-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">75% of expected</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Pending Rent</p>
+                <h3 class="text-2xl font-bold text-yellow-600">৳ 23,000</h3>
+              </div>
+              <div class="bg-yellow-100 p-3 rounded-full">
+                <i class="fas fa-clock text-yellow-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">From 3 tenants</p>
+          </div>
+
+          <div class="bg-white rounded-lg shadow-md p-6">
+            <div class="flex justify-between items-center">
+              <div>
+                <p class="text-gray-500">Overdue Rent</p>
+                <h3 class="text-2xl font-bold text-red-600">৳ 12,500</h3>
+              </div>
+              <div class="bg-red-100 p-3 rounded-full">
+                <i class="fas fa-exclamation-triangle text-red-600 text-xl"></i>
+              </div>
+            </div>
+            <p class="text-sm text-gray-500 mt-2">From 2 tenants</p>
+          </div>
+        </div>
+
+        <!-- Collection Progress -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-8">
+          <div class="flex justify-between items-center mb-4">
+            <h3 class="text-lg font-semibold text-gray-800">Monthly Collection Progress</h3>
+            <span class="text-sm font-medium text-blue-600">75% Collected</span>
+          </div>
+          <div class="w-full bg-gray-200 rounded-full h-4">
+            <div class="progress-bar bg-green-600 h-4 rounded-full" style="width: 75%"></div>
+          </div>
+          <div class="flex justify-between text-sm text-gray-600 mt-2">
+            <span>৳ 0</span>
+            <span>৳ 91,500</span>
+          </div>
+        </div>
+
+        <!-- Tenants List -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden">
+          <div class="px-6 py-4 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg font-semibold text-gray-800">Tenant Payments</h3>
+            <div class="relative">
+              <input type="text" placeholder="Search tenants..." class="bg-gray-100 border-0 rounded-lg py-2 pl-3 pr-10 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500" />
+              <div class="absolute inset-y-0 right-0 flex items-center pr-3">
+                <i class="fas fa-search text-gray-400"></i>
+              </div>
+            </div>
+          </div>
+
+          <div class="overflow-x-auto">
+            <table class="min-w-full divide-y divide-gray-200">
+              <thead class="bg-gray-50">
+                <tr>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Tenant</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Property</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Rent Amount</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Due Date</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status</th>
+                  <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                </tr>
+              </thead>
+              <tbody class="bg-white divide-y divide-gray-200">
+                <tr class="tenant-row">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                        <span class="text-blue-600 font-semibold">RM</span>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">Rahim Miah</div>
+                        <div class="text-sm text-gray-500">+880 1712345678</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Green Valley A-5</div>
+                    <div class="text-sm text-gray-500">3 Beds, 2 Baths</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳ 12,500</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mar 5, 2025</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"><i class="fas fa-check mr-1"></i> Paid</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                    <button class="text-green-600 hover:text-green-900">Receipt</button>
+                  </td>
+                </tr>
+
+                <tr class="tenant-row">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
+                        <span class="text-purple-600 font-semibold">KU</span>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">Karim Uddin</div>
+                        <div class="text-sm text-gray-500">+880 1812345678</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">River View C-7</div>
+                    <div class="text-sm text-gray-500">2 Beds, 1 Bath</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳ 10,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mar 10, 2025</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"><i class="fas fa-clock mr-1"></i> Pending</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button class="text-blue-600 hover:text-blue-900 mr-3">Remind</button>
+                    <button class="text-green-600 hover:text-green-900">Record Payment</button>
+                  </td>
+                </tr>
+
+                <tr class="tenant-row">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10 bg-pink-100 rounded-full flex items-center justify-center">
+                        <span class="text-pink-600 font-semibold">FB</span>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">Fatema Begum</div>
+                        <div class="text-sm text-gray-500">+880 1912345678</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Sunrise Homes B-3</div>
+                    <div class="text-sm text-gray-500">2 Beds, 2 Baths</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳ 9,000</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Feb 28, 2025</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"><i class="fas fa-exclamation-triangle mr-1"></i> Overdue</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button class="text-blue-600 hover:text-blue-900 mr-3">Remind</button>
+                    <button class="text-green-600 hover:text-green-900">Record Payment</button>
+                  </td>
+                </tr>
+
+                <tr class="tenant-row">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10 bg-indigo-100 rounded-full flex items-center justify-center">
+                        <span class="text-indigo-600 font-semibold">SA</span>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">Sabbir Ahmed</div>
+                        <div class="text-sm text-gray-500">+880 1612345678</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">Green Valley B-2</div>
+                    <div class="text-sm text-gray-500">3 Beds, 2 Baths</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳ 13,500</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mar 12, 2025</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"><i class="fas fa-check mr-1"></i> Paid</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button class="text-blue-600 hover:text-blue-900 mr-3">View</button>
+                    <button class="text-green-600 hover:text-green-900">Receipt</button>
+                  </td>
+                </tr>
+
+                <tr class="tenant-row">
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="flex items-center">
+                      <div class="flex-shrink-0 h-10 w-10 bg-teal-100 rounded-full flex items-center justify-center">
+                        <span class="text-teal-600 font-semibold">NJ</span>
+                      </div>
+                      <div class="ml-4">
+                        <div class="text-sm font-medium text-gray-900">Nusrat Jahan</div>
+                        <div class="text-sm text-gray-500">+880 1512345678</div>
+                      </div>
+                    </div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <div class="text-sm text-gray-900">River View A-1</div>
+                    <div class="text-sm text-gray-500">1 Bed, 1 Bath</div>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">৳ 7,500</td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900">Mar 8, 2025</td>
+                  <td class="px-6 py-4 whitespace-nowrap">
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800"><i class="fas fa-clock mr-1"></i> Pending</span>
+                  </td>
+                  <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                    <button class="text-blue-600 hover:text-blue-900 mr-3">Remind</button>
+                    <button class="text-green-600 hover:text-green-900">Record Payment</button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <div class="px-6 py-4 border-t border-gray-200 flex items-center justify-between">
+            <div class="text-sm text-gray-700">
+              Showing <span class="font-medium">1</span> to <span class="font-medium">5</span> of <span class="font-medium">12</span> tenants
+            </div>
+            <div class="flex space-x-2">
+              <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"><i class="fas fa-chevron-left"></i></button>
+              <button class="px-3 py-1 bg-blue-600 text-white rounded-md">1</button>
+              <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">2</button>
+              <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300">3</button>
+              <button class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"><i class="fas fa-chevron-right"></i></button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-8">
+      <div class="container mx-auto px-4">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 class="text-xl font-semibold mb-4">House Rent Management</h3>
+            <p>Make your rental management simple and effective with our system.</p>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+            <ul class="space-y-2">
+              <li>
+                <a href="#" class="hover:text-blue-300">Home</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-blue-300">Features</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-blue-300">Pricing</a>
+              </li>
+              <li>
+                <a href="#" class="hover:text-blue-300">Contact</a>
+              </li>
+            </ul>
+          </div>
+          <div>
+            <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+            <p>
+              <i class="fas fa-map-marker-alt mr-2"></i> Keranigonj, Dhaka
+            </p>
+            <p class="my-2">
+              <i class="fas fa-phone mr-2"></i> +880 17000000000
+            </p>
+            <p>
+              <i class="fas fa-envelope mr-2"></i> info@barivara.com
+            </p>
+          </div>
+        </div>
+        <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+          <p>&copy; 2025 House Rent Management - All Rights Reserved.</p>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Simple JavaScript for interactive elements
+      document.addEventListener('DOMContentLoaded', function () {
+        // Add click functionality to tenant rows
+        const tenantRows = document.querySelectorAll('.tenant-row')
+        tenantRows.forEach((row) => {
+          row.addEventListener('click', function (e) {
+            // Don't trigger if clicking on buttons
+            if (!e.target.closest('button')) {
+              alert('Tenant details would appear here in a real application.')
+            }
+          })
+        })
+      
+        // Add payment button functionality
+        const addPaymentBtn = document.querySelector('button:contains("Add Payment")')
+        addPaymentBtn.addEventListener('click', function () {
+          alert('Add payment form would open here.')
+        })
+      
+        // Record payment buttons
+        const recordPaymentBtns = document.querySelectorAll('button:contains("Record Payment")')
+        recordPaymentBtns.forEach((btn) => {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation()
+            alert('Record payment form would open here.')
+          })
+        })
+      
+        // Remind buttons
+        const remindBtns = document.querySelectorAll('button:contains("Remind")')
+        remindBtns.forEach((btn) => {
+          btn.addEventListener('click', function (e) {
+            e.stopPropagation()
+            alert('Reminder would be sent to tenant.')
+          })
+        })
+      })
+    </script>
+  </body>
+</html>
