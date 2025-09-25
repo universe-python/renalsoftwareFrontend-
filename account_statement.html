@@ -26,6 +26,57 @@
       .transaction-row:hover {
         background-color: #f7fafc;
       }
+
+      /* Mobile menu styles */
+      .mobile-menu {
+        display: none;
+      }
+      .mobile-menu.active {
+        display: block;
+      }
+
+      /* Responsive table styles */
+      @media (max-width: 768px) {
+        .transaction-table {
+          display: block;
+          overflow-x: auto;
+          white-space: nowrap;
+        }
+        .transaction-table thead {
+          display: none;
+        }
+        .transaction-table tbody,
+        .transaction-table tr,
+        .transaction-table td {
+          display: block;
+          width: 100%;
+        }
+        .transaction-table tr {
+          margin-bottom: 1rem;
+          border: 1px solid #e2e8f0;
+          border-radius: 0.5rem;
+          padding: 0.75rem;
+        }
+        .transaction-table td {
+          text-align: right;
+          padding-left: 50%;
+          position: relative;
+          border-bottom: 1px solid #f1f5f9;
+        }
+        .transaction-table td:last-child {
+          border-bottom: none;
+        }
+        .transaction-table td::before {
+          content: attr(data-label);
+          position: absolute;
+          left: 0.75rem;
+          width: 45%;
+          padding-right: 0.5rem;
+          font-weight: 600;
+          text-align: left;
+          white-space: nowrap;
+        }
+      }
     </style>
   </head>
   <body class="bg-gray-100">
@@ -42,13 +93,13 @@
         <div class="flex items-center space-x-4">
           <button
             id="loginBtn"
-            class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100"
+            class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100 hidden md:block"
           >
             Login
           </button>
           <button
             id="registerBtn"
-            class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600"
+            class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600 hidden md:block"
           >
             Register
           </button>
@@ -57,386 +108,504 @@
           </button>
         </div>
       </div>
+
+      <!-- Mobile Menu -->
+      <div class="mobile-menu bg-blue-700 md:hidden" id="mobileMenu">
+        <div class="container mx-auto px-4 py-2 flex flex-col space-y-2">
+          <button
+            id="mobileLoginBtn"
+            class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-blue-100 text-center"
+          >
+            Login
+          </button>
+          <button
+            id="mobileRegisterBtn"
+            class="bg-green-500 text-white px-4 py-2 rounded-lg font-semibold hover:bg-green-600 text-center"
+          >
+            Register
+          </button>
+        </div>
+      </div>
     </header>
 
-    <div class="container mx-auto flex flex-col md:flex-row gap-6 px-4 py-8">
-      <!-- Navigation -->
-      <div
-        class="dashboard-nav bg-white rounded-lg shadow-md p-4 w-full md:w-1/4"
-      >
-        <ul class="space-y-7">
-          <li>
-            <a
-              href="dashboard.html"
-              class="w-full text-left px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold"
-              ><i class="fa-solid fa-table-columns"></i> ড্যাশবোর্ড</a
-            >
-          </li>
-          <li>
-            <a href="add_house.html" class="w-full text-left px-4 py-2"
-              ><i class="fa-solid fa-house"></i> বাড়ি যোগ করুন</a
-            >
-          </li>
-          <li>
-            <a
-              href="add_flat.html"
-              class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
-              ><i class="fa-solid fa-building"></i> ফ্ল্যাট যোগ করুন</a
-            >
-          </li>
-          <li>
-            <a
-              href="rent_collection.html"
-              class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
-              ><i class="fa-solid fa-money-bill-wave"></i> ভাড়া আদায়</a
-            >
-          </li>
-          <li>
-            <a
-              href="account_statement.html"
-              class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
-              ><i class="fa-solid fa-calculator"></i> হিসাব বিবরণী</a
-            >
-          </li>
-          <li>
-            <a
-              href="profile.html"
-              class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
-              ><i class="fa-solid fa-user"></i> প্রোফাইল</a
-            >
-          </li>
-          <li>
-            <a
-              href="logout.html"
-              class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
-              ><i class="fa-solid fa-right-from-bracket"></i> লগআউট</a
-            >
-          </li>
-        </ul>
-      </div>
+    <!-- Dashboard Section (Visible after login) -->
+    <section id="dashboard" class="container mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold text-center mb-8">হিসাব বিবরণী</h2>
 
-      <!-- Main Content -->
-      <div class="container mx-auto px-4 py-8">
-        <!-- Page Header -->
+      <div class="flex flex-col md:flex-row gap-6">
+        <!-- Navigation -->
         <div
-          class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6"
+          class="dashboard-nav bg-white rounded-lg shadow-md p-4 w-full md:w-1/4"
         >
-          <div>
-            <h2 class="text-2xl font-bold text-gray-800">Account Statement</h2>
-            <p class="text-gray-600">
-              View your rental income and expense transactions
-            </p>
-          </div>
-          <div class="mt-4 md:mt-0 flex md:flex-row flex-col space-x-2">
-            <div class="relative">
-              <select
-                class="appearance-none bg-white border border-gray-300 rounded-lg py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
+          <ul class="space-y-7">
+            <li>
+              <a
+                href="dashboard.html"
+                class="w-full text-left px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold"
+                ><i class="fa-solid fa-table-columns"></i> ড্যাশবোর্ড</a
               >
-                <option>All Properties</option>
-                <option>Green Valley Apartments</option>
-                <option>Sunrise Homes</option>
-                <option>River View Complex</option>
-              </select>
-              <div
-                class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+            </li>
+            <li>
+              <a href="add_house.html" class="w-full text-left px-4 py-2"
+                ><i class="fa-solid fa-house"></i> বাড়ি যোগ করুন</a
               >
-                <i class="fas fa-chevron-down"></i>
-              </div>
-            </div>
-            <div class="relative">
-              <input
-                type="month"
-                class="bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500"
-                value="2025-03"
-              />
-            </div>
-            <button
-              class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700"
-            >
-              <i class="fas fa-download mr-2"></i>Export
-            </button>
-          </div>
+            </li>
+            <li>
+              <a
+                href="add_flat.html"
+                class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
+                ><i class="fa-solid fa-building"></i> ফ্ল্যাট যোগ করুন</a
+              >
+            </li>
+            <li>
+              <a
+                href="rent_collection.html"
+                class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
+                ><i class="fa-solid fa-money-bill-wave"></i> ভাড়া আদায়</a
+              >
+            </li>
+            <li>
+              <a
+                href="account_statement.html"
+                class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
+                ><i class="fa-solid fa-calculator"></i> হিসাব বিবরণী</a
+              >
+            </li>
+            <li>
+              <a
+                href="profile.html"
+                class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
+                ><i class="fa-solid fa-user"></i> প্রোফাইল</a
+              >
+            </li>
+            <li>
+              <a
+                href="logout.html"
+                class="w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg"
+                ><i class="fa-solid fa-right-from-bracket"></i> লগআউট</a
+              >
+            </li>
+          </ul>
         </div>
 
-        <!-- Summary Cards -->
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex justify-between items-center">
-              <div>
-                <p class="text-gray-500">Total Income</p>
-                <h3 class="text-2xl font-bold text-green-600">৳ 85,500</h3>
-              </div>
-              <div class="bg-green-100 p-3 rounded-full">
-                <i class="fas fa-money-bill-wave text-green-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-sm text-gray-500 mt-2">+12.5% from last month</p>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex justify-between items-center">
-              <div>
-                <p class="text-gray-500">Total Expenses</p>
-                <h3 class="text-2xl font-bold text-red-600">৳ 15,200</h3>
-              </div>
-              <div class="bg-red-100 p-3 rounded-full">
-                <i class="fas fa-file-invoice-dollar text-red-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-sm text-gray-500 mt-2">+5.2% from last month</p>
-          </div>
-
-          <div class="bg-white rounded-lg shadow-md p-6">
-            <div class="flex justify-between items-center">
-              <div>
-                <p class="text-gray-500">Net Profit</p>
-                <h3 class="text-2xl font-bold text-blue-600">৳ 70,300</h3>
-              </div>
-              <div class="bg-blue-100 p-3 rounded-full">
-                <i class="fas fa-chart-line text-blue-600 text-xl"></i>
-              </div>
-            </div>
-            <p class="text-sm text-gray-500 mt-2">+15.8% from last month</p>
-          </div>
-        </div>
-
-        <!-- Transaction Table -->
-        <div class="bg-white rounded-lg shadow-md overflow-hidden">
-          <div class="px-6 py-4 border-b border-gray-200">
-            <h3 class="text-lg font-semibold text-gray-800">
-              Transaction History
-            </h3>
-          </div>
-
-          <div class="overflow-x-auto">
-            <table class="min-w-full divide-y divide-gray-200">
-              <thead class="bg-gray-50">
-                <tr>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Date
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Description
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Property
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Tenant
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Type
-                  </th>
-                  <th
-                    scope="col"
-                    class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
-                  >
-                    Amount
-                  </th>
-                </tr>
-              </thead>
-              <tbody class="bg-white divide-y divide-gray-200">
-                <tr class="transaction-row cursor-pointer">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Mar 15, 2025</div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      Monthly Rent
-                    </div>
-                    <div class="text-sm text-gray-500">Received via bKash</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Green Valley A-5</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Rahim Miah</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                      >Paid</span
-                    >
-                  </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-green-600"
-                  >
-                    ৳ 12,500
-                  </td>
-                </tr>
-
-                <tr class="transaction-row cursor-pointer">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Mar 12, 2025</div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      Maintenance Charge
-                    </div>
-                    <div class="text-sm text-gray-500">Building repair</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Sunrise Homes B-3</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">-</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                      >Unpaid</span
-                    >
-                  </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-red-600"
-                  >
-                    ৳ 3,200
-                  </td>
-                </tr>
-
-                <tr class="transaction-row cursor-pointer">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Mar 10, 2025</div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      Monthly Rent
-                    </div>
-                    <div class="text-sm text-gray-500">Cash payment</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">River View C-7</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Karim Uddin</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                      >Paid</span
-                    >
-                  </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-green-600"
-                  >
-                    ৳ 10,000
-                  </td>
-                </tr>
-
-                <tr class="transaction-row cursor-pointer">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Mar 8, 2025</div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      Utility Bill Payment
-                    </div>
-                    <div class="text-sm text-gray-500">Electricity & Water</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Green Valley A-5</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">-</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
-                      >Unpaid</span
-                    >
-                  </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-red-600"
-                  >
-                    ৳ 2,500
-                  </td>
-                </tr>
-
-                <tr class="transaction-row cursor-pointer">
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Mar 5, 2025</div>
-                  </td>
-                  <td class="px-6 py-4">
-                    <div class="text-sm font-medium text-gray-900">
-                      Monthly Rent
-                    </div>
-                    <div class="text-sm text-gray-500">Bank transfer</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Sunrise Homes B-3</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <div class="text-sm text-gray-900">Fatema Begum</div>
-                  </td>
-                  <td class="px-6 py-4 whitespace-nowrap">
-                    <span
-                      class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
-                      >Paid</span
-                    >
-                  </td>
-                  <td
-                    class="px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-green-600"
-                  >
-                    ৳ 9,000
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-          <!-- Pagination -->
+        <!-- Main Content -->
+        <div class="container mx-auto px-4 py-8 w-full md:w-3/4">
+          <!-- Page Header -->
           <div
-            class="px-6 py-4 border-t border-gray-200 flex items-center justify-between"
+            class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6"
           >
-            <div class="text-sm text-gray-700">
-              Showing <span class="font-medium">1</span> to
-              <span class="font-medium">5</span> of
-              <span class="font-medium">24</span> transactions
+            <div>
+              <h2 class="text-2xl font-bold text-gray-800">
+                Account Statement
+              </h2>
+              <p class="text-gray-600">
+                View your rental income and expense transactions
+              </p>
             </div>
-            <div class="flex space-x-2">
+            <div
+              class="mt-4 md:mt-0 flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-2"
+            >
+              <div class="relative">
+                <select
+                  class="appearance-none bg-white border border-gray-300 rounded-lg py-2 pl-3 pr-8 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                >
+                  <option>All Properties</option>
+                  <option>Green Valley Apartments</option>
+                  <option>Sunrise Homes</option>
+                  <option>River View Complex</option>
+                </select>
+                <div
+                  class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+                >
+                  <i class="fas fa-chevron-down"></i>
+                </div>
+              </div>
+              <div class="relative">
+                <input
+                  type="month"
+                  class="bg-white border border-gray-300 rounded-lg py-2 px-3 text-gray-700 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+                  value="2025-03"
+                />
+              </div>
               <button
-                class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                class="bg-blue-600 text-white px-4 py-2 rounded-lg font-semibold hover:bg-blue-700 w-full sm:w-auto"
               >
-                <i class="fas fa-chevron-left"></i>
+                <i class="fas fa-download mr-2"></i>Export
               </button>
-              <button class="px-3 py-1 bg-blue-600 text-white rounded-md">
-                1
-              </button>
-              <button
-                class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-              >
-                2
-              </button>
-              <button
-                class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-              >
-                3
-              </button>
-              <button
-                class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
-              >
-                <i class="fas fa-chevron-right"></i>
-              </button>
+            </div>
+          </div>
+
+          <!-- Summary Cards -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-8"
+          >
+            <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div class="flex justify-between items-center">
+                <div>
+                  <p class="text-gray-500 text-sm sm:text-base">Total Income</p>
+                  <h3 class="text-xl sm:text-2xl font-bold text-green-600">
+                    ৳ 85,500
+                  </h3>
+                </div>
+                <div class="bg-green-100 p-2 sm:p-3 rounded-full">
+                  <i
+                    class="fas fa-money-bill-wave text-green-600 text-lg sm:text-xl"
+                  ></i>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-500 mt-2">
+                +12.5% from last month
+              </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div class="flex justify-between items-center">
+                <div>
+                  <p class="text-gray-500 text-sm sm:text-base">
+                    Total Expenses
+                  </p>
+                  <h3 class="text-xl sm:text-2xl font-bold text-red-600">
+                    ৳ 15,200
+                  </h3>
+                </div>
+                <div class="bg-red-100 p-2 sm:p-3 rounded-full">
+                  <i
+                    class="fas fa-file-invoice-dollar text-red-600 text-lg sm:text-xl"
+                  ></i>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-500 mt-2">
+                +5.2% from last month
+              </p>
+            </div>
+
+            <div class="bg-white rounded-lg shadow-md p-4 sm:p-6">
+              <div class="flex justify-between items-center">
+                <div>
+                  <p class="text-gray-500 text-sm sm:text-base">Net Profit</p>
+                  <h3 class="text-xl sm:text-2xl font-bold text-blue-600">
+                    ৳ 70,300
+                  </h3>
+                </div>
+                <div class="bg-blue-100 p-2 sm:p-3 rounded-full">
+                  <i
+                    class="fas fa-chart-line text-blue-600 text-lg sm:text-xl"
+                  ></i>
+                </div>
+              </div>
+              <p class="text-xs sm:text-sm text-gray-500 mt-2">
+                +15.8% from last month
+              </p>
+            </div>
+          </div>
+
+          <!-- Transaction Table -->
+          <div class="bg-white rounded-lg shadow-md overflow-hidden">
+            <div class="px-4 sm:px-6 py-4 border-b border-gray-200">
+              <h3 class="text-lg font-semibold text-gray-800">
+                Transaction History
+              </h3>
+            </div>
+
+            <div class="transaction-table">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50 hidden md:table-header-group">
+                  <tr>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Date
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Description
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Property
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Tenant
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Type
+                    </th>
+                    <th
+                      scope="col"
+                      class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
+                    >
+                      Amount
+                    </th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr class="transaction-row cursor-pointer">
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Date"
+                    >
+                      <div class="text-sm text-gray-900">Mar 15, 2025</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4" data-label="Description">
+                      <div class="text-sm font-medium text-gray-900">
+                        Monthly Rent
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        Received via bKash
+                      </div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Property"
+                    >
+                      <div class="text-sm text-gray-900">Green Valley A-5</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Tenant"
+                    >
+                      <div class="text-sm text-gray-900">Rahim Miah</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Type"
+                    >
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                        >Paid</span
+                      >
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-green-600"
+                      data-label="Amount"
+                    >
+                      ৳ 12,500
+                    </td>
+                  </tr>
+
+                  <tr class="transaction-row cursor-pointer">
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Date"
+                    >
+                      <div class="text-sm text-gray-900">Mar 12, 2025</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4" data-label="Description">
+                      <div class="text-sm font-medium text-gray-900">
+                        Maintenance Charge
+                      </div>
+                      <div class="text-sm text-gray-500">Building repair</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Property"
+                    >
+                      <div class="text-sm text-gray-900">Sunrise Homes B-3</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Tenant"
+                    >
+                      <div class="text-sm text-gray-900">-</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Type"
+                    >
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                        >Unpaid</span
+                      >
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-red-600"
+                      data-label="Amount"
+                    >
+                      ৳ 3,200
+                    </td>
+                  </tr>
+
+                  <tr class="transaction-row cursor-pointer">
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Date"
+                    >
+                      <div class="text-sm text-gray-900">Mar 10, 2025</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4" data-label="Description">
+                      <div class="text-sm font-medium text-gray-900">
+                        Monthly Rent
+                      </div>
+                      <div class="text-sm text-gray-500">Cash payment</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Property"
+                    >
+                      <div class="text-sm text-gray-900">River View C-7</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Tenant"
+                    >
+                      <div class="text-sm text-gray-900">Karim Uddin</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Type"
+                    >
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                        >Paid</span
+                      >
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-green-600"
+                      data-label="Amount"
+                    >
+                      ৳ 10,000
+                    </td>
+                  </tr>
+
+                  <tr class="transaction-row cursor-pointer">
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Date"
+                    >
+                      <div class="text-sm text-gray-900">Mar 8, 2025</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4" data-label="Description">
+                      <div class="text-sm font-medium text-gray-900">
+                        Utility Bill Payment
+                      </div>
+                      <div class="text-sm text-gray-500">
+                        Electricity & Water
+                      </div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Property"
+                    >
+                      <div class="text-sm text-gray-900">Green Valley A-5</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Tenant"
+                    >
+                      <div class="text-sm text-gray-900">-</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Type"
+                    >
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-800"
+                        >Unpaid</span
+                      >
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-red-600"
+                      data-label="Amount"
+                    >
+                      ৳ 2,500
+                    </td>
+                  </tr>
+
+                  <tr class="transaction-row cursor-pointer">
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Date"
+                    >
+                      <div class="text-sm text-gray-900">Mar 5, 2025</div>
+                    </td>
+                    <td class="px-4 sm:px-6 py-4" data-label="Description">
+                      <div class="text-sm font-medium text-gray-900">
+                        Monthly Rent
+                      </div>
+                      <div class="text-sm text-gray-500">Bank transfer</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Property"
+                    >
+                      <div class="text-sm text-gray-900">Sunrise Homes B-3</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Tenant"
+                    >
+                      <div class="text-sm text-gray-900">Fatema Begum</div>
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap"
+                      data-label="Type"
+                    >
+                      <span
+                        class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800"
+                        >Paid</span
+                      >
+                    </td>
+                    <td
+                      class="px-4 sm:px-6 py-4 whitespace-nowrap text-right text-sm font-medium text-green-600"
+                      data-label="Amount"
+                    >
+                      ৳ 9,000
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Pagination -->
+            <div
+              class="px-4 sm:px-6 py-4 border-t border-gray-200 flex flex-col sm:flex-row items-center justify-between space-y-4 sm:space-y-0"
+            >
+              <div class="text-sm text-gray-700">
+                Showing <span class="font-medium">1</span> to
+                <span class="font-medium">5</span> of
+                <span class="font-medium">24</span> transactions
+              </div>
+              <div class="flex space-x-2">
+                <button
+                  class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                >
+                  <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="px-3 py-1 bg-blue-600 text-white rounded-md">
+                  1
+                </button>
+                <button
+                  class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                >
+                  2
+                </button>
+                <button
+                  class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                >
+                  3
+                </button>
+                <button
+                  class="px-3 py-1 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300"
+                >
+                  <i class="fas fa-chevron-right"></i>
+                </button>
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8 mt-8">
@@ -483,6 +652,14 @@
     <script>
       // Simple JavaScript for interactive elements
       document.addEventListener("DOMContentLoaded", function () {
+        // Mobile menu toggle
+        const menuToggle = document.getElementById("menu-toggle");
+        const mobileMenu = document.getElementById("mobileMenu");
+
+        menuToggle.addEventListener("click", function () {
+          mobileMenu.classList.toggle("active");
+        });
+
         // Add click functionality to transaction rows
         const transactionRows = document.querySelectorAll(".transaction-row");
         transactionRows.forEach((row) => {
@@ -495,9 +672,11 @@
 
         // Export button functionality
         const exportBtn = document.querySelector('button:contains("Export")');
-        exportBtn.addEventListener("click", function () {
-          alert("Export functionality would be implemented here.");
-        });
+        if (exportBtn) {
+          exportBtn.addEventListener("click", function () {
+            alert("Export functionality would be implemented here.");
+          });
+        }
       });
     </script>
   </body>
