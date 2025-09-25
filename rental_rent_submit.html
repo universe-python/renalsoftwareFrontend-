@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tenant Rent Submit</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body class="bg-gray-100 flex items-center justify-center min-h-screen">
+
+    <div class="bg-white shadow-xl rounded-xl p-8 w-full max-w-lg">
+        <h2 class="text-2xl font-bold mb-6 text-center text-blue-600">💰 Rent Payment</h2>
+
+        <form action="#" method="POST" enctype="multipart/form-data" class="space-y-4">
+
+            <!-- Tenant Name -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Tenant Name</label>
+                <input type="text" name="tenant_name"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Enter your name" required>
+            </div>
+
+            <!-- Type of Rental -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Type of Rental</label>
+                <select name="rental_type"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200" required>
+                    <option value="">-- Select --</option>
+                    <option value="Bachelor">Bachelor</option>
+                    <option value="Family">Family</option>
+                    <option value="Office">Office</option>
+                </select>
+            </div>
+
+            <!-- Flat Number -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Flat Number</label>
+                <input type="text" name="flat_number"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Ex: A-101" required>
+            </div>
+
+            <!-- Building -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Building</label>
+                <input type="text" name="building"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Green Villa" required>
+            </div>
+
+            <!-- Rent Month -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Month</label>
+                <input type="month" name="rent_month"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200" required>
+            </div>
+
+            <!-- Monthly Rent -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Monthly Rent (BDT)</label>
+                <input type="number" name="monthly_rent"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Ex: 10000" required>
+            </div>
+
+            <!-- Gas Bill -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Monthly Gas Bill (BDT)</label>
+                <input type="number" name="gas_bill"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Ex: 1000">
+            </div>
+
+            <!-- Service Fee -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Service Fee (BDT)</label>
+                <input type="number" name="service_fee"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Ex: 500">
+            </div>
+
+            <!-- Other Cost -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Other Cost (BDT)</label>
+                <input type="number" name="other_cost"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Ex: 200">
+            </div>
+
+            <!-- Payment Method -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Payment Method</label>
+                <select name="payment_method"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200">
+                    <option value="Cash">Cash</option>
+                    <option value="Bkash">Bkash</option>
+                    <option value="Nagad">Nagad</option>
+                    <option value="Bank">Bank Transfer</option>
+                </select>
+            </div>
+
+            <!-- Transaction ID -->
+            <div>
+                <label class="block text-sm font-medium text-gray-700">Transaction ID (if online)</label>
+                <input type="text" name="transaction_id"
+                    class="w-full mt-1 px-3 py-2 border rounded-lg focus:ring focus:ring-blue-200"
+                    placeholder="Enter transaction ID">
+            </div>
+
+            
+            <!-- Electricity Bill Copy Upload -->
+            <div>
+                <!-- Image Upload -->
+                <div class="mt-8">
+                    <label class="block text-gray-700 mb-3 font-medium">Electricity Bill Copy</label>
+                    <div class="border-2 border-dashed border-gray-300 rounded-lg p-6 text-center">
+                        <p class="text-gray-500 mb-2">Drop image here or click to select</p>
+                        <label for="file-upload"
+                            class="inline-block bg-blue-100 text-blue-600 px-4 py-2 rounded-lg cursor-pointer hover:bg-blue-200">
+                            <span> <i class="fas fa-cloud-upload-alt text-4xl text-gray-400 mb-3"></i>
+                            </span>
+                            <input id="file-upload" type="file" class="hidden" multiple>
+                        </label>
+                        <p class="text-sm text-gray-400 mt-2">PNG, JPG, GIF up to 10MB</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <button type="submit"
+                class="w-full bg-blue-600 text-white py-2 rounded-lg font-semibold hover:bg-blue-700 transition">
+                Submit Rent
+            </button>
+        </form>
+    </div>
+
+</body>
+
+</html>
