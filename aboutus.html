@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About Us - House Rental Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <style>
+        @import url("https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap");
+
+        body {
+            font-family: "Hind Siliguri", sans-serif;
+        }
+
+        .property-card {
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-nav {
+            min-height: calc(100vh - 4rem);
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-home text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold">House Rent Management</h1>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="login.html" id="loginBtn"
+                    class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">Login</a>
+                <a href="owner_registration.html" id="registerBtn"
+                    class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600">Register</a>
+                <button class="md:hidden" id="menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="gradient-bg text-white py-16">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl font-bold mb-4">About Us</h1>
+            <p class="text-xl max-w-2xl mx-auto">
+                We are dedicated to simplifying rental property management for landlords across Bangladesh
+            </p>
+        </div>
+    </section>
+
+    <!-- Our Story Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2">
+                    <h2 class="text-3xl font-bold mb-6 text-gray-800">Our Story</h2>
+                    <p class="text-gray-600 mb-4">
+                        Founded in 2023, House Rent Management System was born out of a simple observation:
+                        property owners in Bangladesh struggle with managing multiple rental properties,
+                        tracking rent payments, and maintaining proper records.
+                    </p>
+                    <p class="text-gray-600 mb-4">
+                        Our team of developers and property management experts came together to create
+                        a comprehensive solution that would simplify the entire process, saving time
+                        and reducing errors for property owners.
+                    </p>
+                    <p class="text-gray-600">
+                        Today, we serve hundreds of property owners across Bangladesh, helping them
+                        manage their rental properties more efficiently and effectively.
+                    </p>
+                </div>
+                <div class="lg:w-1/2">
+                    <div class="bg-blue-100 rounded-lg p-8 property-card">
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-blue-600 mb-2">500+</div>
+                                <div class="text-gray-700">Happy Customers</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-green-600 mb-2">1500+</div>
+                                <div class="text-gray-700">Properties Managed</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-purple-600 mb-2">৳ 5Cr+</div>
+                                <div class="text-gray-700">Rent Processed</div>
+                            </div>
+                            <div class="text-center">
+                                <div class="text-4xl font-bold text-yellow-600 mb-2">98%</div>
+                                <div class="text-gray-700">Satisfaction Rate</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Mission & Vision Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="bg-white rounded-lg shadow-md p-8 property-card">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-bullseye text-5xl text-blue-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">Our Mission</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        To empower property owners in Bangladesh with innovative technology
+                        that simplifies rental management, increases efficiency, and maximizes
+                        returns on their investments.
+                    </p>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md p-8 property-card">
+                    <div class="text-center mb-6">
+                        <i class="fas fa-eye text-5xl text-green-500 mb-4"></i>
+                        <h3 class="text-2xl font-bold text-gray-800">Our Vision</h3>
+                    </div>
+                    <p class="text-gray-600 text-center">
+                        To become Bangladesh's most trusted rental management platform,
+                        transforming how property owners manage their rentals through
+                        technology-driven solutions that are accessible to everyone.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Why Choose Us</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="bg-gray-50 rounded-lg p-6 property-card text-center">
+                    <i class="fas fa-shield-alt text-4xl text-blue-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Secure & Reliable</h3>
+                    <p class="text-gray-600">
+                        Your data is protected with enterprise-grade security measures and regular backups.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 property-card text-center">
+                    <i class="fas fa-tachometer-alt text-4xl text-green-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Easy to Use</h3>
+                    <p class="text-gray-600">
+                        Intuitive interface designed specifically for Bangladeshi property owners.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 property-card text-center">
+                    <i class="fas fa-headset text-4xl text-purple-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Bangla Support</h3>
+                    <p class="text-gray-600">
+                        Get support in Bangla from our dedicated customer service team.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 property-card text-center">
+                    <i class="fas fa-mobile-alt text-4xl text-red-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Mobile Friendly</h3>
+                    <p class="text-gray-600">
+                        Access your rental information from any device, anywhere.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 property-card text-center">
+                    <i class="fas fa-rupee-sign text-4xl text-yellow-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Cost Effective</h3>
+                    <p class="text-gray-600">
+                        Affordable pricing plans suitable for individual owners to large enterprises.
+                    </p>
+                </div>
+
+                <div class="bg-gray-50 rounded-lg p-6 property-card text-center">
+                    <i class="fas fa-sync text-4xl text-indigo-500 mb-4"></i>
+                    <h3 class="text-xl font-semibold mb-3">Regular Updates</h3>
+                    <p class="text-gray-600">
+                        We continuously improve our system based on user feedback and market needs.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Team Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl font-bold text-center mb-12 text-gray-800">Meet Our Team</h2>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-white rounded-lg shadow-md overflow-hidden property-card">
+                    <div class="h-48 bg-blue-100 flex items-center justify-center">
+                        <i class="fas fa-user text-6xl text-blue-500"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-1">Rahim Ahmed</h3>
+                        <p class="text-blue-600 mb-3">CEO & Founder</p>
+                        <p class="text-gray-600 text-sm">
+                            With 10+ years in real estate, Rahim leads our vision and strategy.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden property-card">
+                    <div class="h-48 bg-green-100 flex items-center justify-center">
+                        <i class="fas fa-user text-6xl text-green-500"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-1">Fatima Begum</h3>
+                        <p class="text-green-600 mb-3">CTO</p>
+                        <p class="text-gray-600 text-sm">
+                            Fatima oversees our technology development with 8+ years of experience.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden property-card">
+                    <div class="h-48 bg-purple-100 flex items-center justify-center">
+                        <i class="fas fa-user text-6xl text-purple-500"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-1">Karim Uddin</h3>
+                        <p class="text-purple-600 mb-3">Head of Customer Success</p>
+                        <p class="text-gray-600 text-sm">
+                            Karim ensures our customers get the best experience with our platform.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-md overflow-hidden property-card">
+                    <div class="h-48 bg-yellow-100 flex items-center justify-center">
+                        <i class="fas fa-user text-6xl text-yellow-500"></i>
+                    </div>
+                    <div class="p-6 text-center">
+                        <h3 class="text-xl font-semibold mb-1">Ayesha Khan</h3>
+                        <p class="text-yellow-600 mb-3">Product Manager</p>
+                        <p class="text-gray-600 text-sm">
+                            Ayesha drives product development based on market research and user feedback.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="py-16 gradient-bg text-white">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-3xl font-bold mb-6">Ready to Simplify Your Rental Management?</h2>
+            <p class="text-xl mb-8 max-w-2xl mx-auto">
+                Join hundreds of property owners who are already using our system to manage their rentals efficiently.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="owner_registration.html"
+                    class="bg-green-500 text-white px-8 py-3 rounded-lg font-semibold hover:bg-green-600 text-lg">
+                    Get Started Today
+                </a>
+                <a href="contact.html"
+                    class="bg-white text-blue-600 px-8 py-3 rounded-lg font-semibold hover:bg-blue-100 text-lg">
+                    Contact Us
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">House Rent Management</h3>
+                    <p>
+                        Make your rental management simple and effective with our system.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="hover:text-blue-300">Home</a></li>
+                        <li><a href="about.html" class="hover:text-blue-300">About Us</a></li>
+                        <li><a href="features.html" class="hover:text-blue-300">Features</a></li>
+                        <li><a href="contact.html" class="hover:text-blue-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> Keranigonj, Dhaka</p>
+                    <p class="my-2">
+                        <i class="fas fa-phone mr-2"></i> +880 17000000000
+                    </p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@barivara.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>&copy; 2025 House Rent Management - All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>
