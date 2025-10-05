@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Rent - Complete Management System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+        }
+
+        .property-card {
+            transition: transform 0.3s;
+        }
+
+        .property-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .dashboard-nav {
+            min-height: calc(100vh - 4rem);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-home text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold">House Rent Management</h1>
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <a href="login.html" id="loginBtn"
+                    class="bg-white text-blue-600 px-4 py-1 rounded-lg font-semibold hover:bg-blue-100">Login</a>
+                <a href="owner_registration.html" id="registerBtn"
+                    class="bg-green-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-green-600">Register</a>
+                <button class="md:hidden" id="menu-toggle">
+                    <i class="fas fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <!-- Owner Registration Tab -->
+    <div id="owner-registration-tab" class="tab-content container mx-auto px-4 py-8">
+        <h2 class="text-2xl font-bold mb-6">Owner registration</h2>
+
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <form>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Full Name <span
+                                    class="text-red-500">*</span></label>
+                            <input type="text"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter your full name">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Monthly amount <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter monthly amount">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Monthly payment date <span
+                                    class="text-red-500">*</span></label>
+                            <input type="number" min="1" max="31"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter payment date (1-31)">
+                        </div>
+                    </div>
+                    <div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Package selection <span
+                                    class="text-red-500">*</span></label>
+                            <select
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                <option value="">Package selection</option>
+                                <option value="basic">Basic (5 buildings) - ৳ 500/month</option>
+                                <option value="standard">Standard (10 buildings) - ৳ 800/month</option>
+                                <option value="premium">Premium (Unlimited) - ৳ 1200/month</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Email address <span
+                                    class="text-red-500">*</span></label>
+                            <input type="email"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter your email address">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Password <span
+                                    class="text-red-500">*</span></label>
+                            <input type="password"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Enter your password">
+                        </div>
+                        <div class="mb-4">
+                            <label class="block text-gray-700 mb-2 font-medium">Confirm Password <span
+                                    class="text-red-500">*</span></label>
+                            <input type="password"
+                                class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+                                placeholder="Re-enter your password">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Bank information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Bank Name</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg" placeholder="Enter bank name">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Branch</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg"
+                                placeholder="Enter branch name">
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Account number</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg"
+                                placeholder="Enter account number">
+                        </div>
+                    </div>
+                    <button type="button" class="mt-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm">+ Add bank
+                        account</button>
+                </div>
+
+                <div class="mt-6">
+                    <h3 class="text-lg font-semibold mb-4">Online payment information</h3>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-gray-700 mb-2">Payment gateway type</label>
+                            <select class="w-full px-4 py-2 border rounded-lg">
+                                <option value="">select</option>
+                                <option value="bkash">Bkash</option>
+                                <option value="nagad">Nagad</option>
+                                <option value="rocket">Rocket</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Account type</label>
+                            <select class="w-full px-4 py-2 border rounded-lg">
+                                <option value="">select</option>
+                                <option value="personal">Personal</option>
+                                <option value="merchant">Merchant</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-gray-700 mb-2">Payment Number</label>
+                            <input type="text" class="w-full px-4 py-2 border rounded-lg"
+                                placeholder="Enter payment number">
+                        </div>
+                    </div>
+                    <button type="button" class="mt-2 bg-blue-100 text-blue-600 px-4 py-2 rounded-lg text-sm">+ Add
+                        online
+                        account</button>
+                </div>
+
+                <div class="mt-8 flex justify-end">
+                    <button type="submit"
+                        class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">House Rent Management</h3>
+                    <p>Make your house rental management simple and effective with our system.</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#" class="hover:text-blue-300">Home</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Features</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Pricing</a></li>
+                        <li><a href="#" class="hover:text-blue-300">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="text-xl font-semibold mb-4">Contact</h3>
+                    <p><i class="fas fa-map-marker-alt mr-2"></i> Keraniganj, Dhaka</p>
+                    <p class="my-2"><i class="fas fa-phone mr-2"></i> +880 1700000000</p>
+                    <p><i class="fas fa-envelope mr-2"></i> info@barivara.com</p>
+                </div>
+            </div>
+            <div class="border-t border-gray-700 mt-8 pt-6 text-center">
+                <p>&copy; 2025 House Rent Management - All Rights Reserved</p>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

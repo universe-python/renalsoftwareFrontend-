@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ফ্ল্যাট ইউনিট ব্যবস্থাপনা - বাড়ি ভাড়া সিস্টেম</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap');
+        body { font-family: 'Hind Siliguri', sans-serif; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
+        .dashboard-nav { min-height: calc(100vh - 4rem); }
+        .step { display: none; }
+        .step.active { display: block; }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <!-- Header Section -->
+    <header class="bg-blue-600 text-white shadow-lg sticky top-0 z-50">
+        <div class="container mx-auto px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center">
+                <i class="fas fa-building text-2xl mr-2"></i>
+                <h1 class="text-xl font-bold">ফ্ল্যাট ইউনিট ব্যবস্থাপনা সিস্টেম</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <span id="userName">রহিম</span>
+                <button class="bg-red-500 text-white px-4 py-1 rounded-lg font-semibold hover:bg-red-600">লগআউট</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-4 py-8">
+        <div class="flex flex-col md:flex-row gap-6">
+            <!-- Navigation -->
+            <div class="dashboard-nav bg-white rounded-lg shadow-md p-4 w-full md:w-1/4">
+                <ul class="space-y-2" id="navTabs">
+                    <li><button class="tab-btn w-full text-left px-4 py-2 bg-blue-100 text-blue-700 rounded-lg font-semibold" data-tab="flat-entry-tab">ফ্ল্যাট ইউনিট এন্ট্রি</button></li>
+                    <li><button class="tab-btn w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg" data-tab="flat-list-tab">ফ্ল্যাট তালিকা</button></li>
+                    <li><button class="tab-btn w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg" data-tab="create-tenant-tab">ভাড়াটিয়া তৈরি</button></li>
+                    <li><button class="tab-btn w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg" data-tab="tenant-list-tab">ভাড়াটিয়া তালিকা</button></li>
+                    <li><button class="tab-btn w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg" data-tab="rent-collection-tab">ভাড়া আদায়</button></li>
+                    <li><button class="tab-btn w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg" data-tab="due-list-tab">বকেয়া ভাড়ার তালিকা</button></li>
+                    <li><button class="tab-btn w-full text-left px-4 py-2 hover:bg-gray-100 rounded-lg" data-tab="reports-tab">রিপোর্ট</button></li>
+                </ul>
+            </div>
+            
+            <!-- Main Content Area -->
+            <div class="w-full md:w-3/4">
+                <!-- Flat Entry Tab -->
+                <div id="flat-entry-tab" class="tab-content active">
+                    <h2 class="text-2xl font-bold mb-6">ফ্ল্যাট ইউনিট এন্ট্রি</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">বিল্ডিং নির্বাচন করুন <span class="text-red-500">*</span></label>
+                                        <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <option value="">বিল্ডিং নির্বাচন করুন</option>
+                                            <option value="green-view">গ্রীন ভিউ - ধানমন্ডি</option>
+                                            <option value="riverside">রিভারসাইড - গুলশান</option>
+                                            <option value="sunflower">সানফ্লাওয়ার - মিরপুর</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">ফ্ল্যাট নম্বর <span class="text-red-500">*</span></label>
+                                        <input type="text" placeholder="যেমন: এ-১, বি-২" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">মাসিক ভাড়া (৳) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">বার্ষিক বৃদ্ধি (%) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">মাসিক গ্যাস বিল (৳) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">সার্ভিস ফি (৳) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">অন্যান্য খরচ (৳) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">ফ্ল্যাটের অবস্থা <span class="text-red-500">*</span></label>
+                                        <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <option value="empty">খালি</option>
+                                            <option value="occupied">ভাড়া দেওয়া</option>
+                                            <option value="under-maintenance">মেরামতাধীন</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 flex justify-end">
+                                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">ফ্ল্যাট সংরক্ষণ করুন</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Flat List Tab -->
+                <div id="flat-list-tab" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6">ফ্ল্যাট তালিকা</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="mb-4 flex justify-between">
+                            <div class="flex space-x-2">
+                                <select class="px-4 py-2 border rounded-lg">
+                                    <option>সব বিল্ডিং</option>
+                                    <option>গ্রীন ভিউ</option>
+                                    <option>রিভারসাইড</option>
+                                    <option>সানফ্লাওয়ার</option>
+                                </select>
+                                <select class="px-4 py-2 border rounded-lg">
+                                    <option>সব অবস্থা</option>
+                                    <option>খালি</option>
+                                    <option>ভাড়া দেওয়া</option>
+                                </select>
+                            </div>
+                            <button class="bg-blue-500 text-white px-4 py-2 rounded-lg">ফিল্টার প্রয়োগ করুন</button>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="p-3 text-left">ফ্ল্যাট নং</th>
+                                        <th class="p-3 text-left">বিল্ডিং</th>
+                                        <th class="p-3 text-left">মাসিক ভাড়া</th>
+                                        <th class="p-3 text-left">অবস্থা</th>
+                                        <th class="p-3 text-left">কার্যক্রম</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="p-3">এ-১</td>
+                                        <td class="p-3">গ্রীন ভিউ</td>
+                                        <td class="p-3">৳ ১৫,০০০</td>
+                                        <td class="p-3"><span class="bg-green-100 text-green-600 px-2 py-1 rounded text-sm">ভাড়া দেওয়া</span></td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2">সম্পাদনা</button>
+                                            <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">মুছুন</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3">এ-২</td>
+                                        <td class="p-3">গ্রীন ভিউ</td>
+                                        <td class="p-3">৳ ১২,০০০</td>
+                                        <td class="p-3"><span class="bg-yellow-100 text-yellow-600 px-2 py-1 rounded text-sm">খালি</span></td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2">সম্পাদনা</button>
+                                            <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">মুছুন</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3">বি-১</td>
+                                        <td class="p-3">রিভারসাইড</td>
+                                        <td class="p-3">৳ ১৮,০০০</td>
+                                        <td class="p-3"><span class="bg-green-100 text-green-600 px-2 py-1 rounded text-sm">ভাড়া দেওয়া</span></td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2">সম্পাদনা</button>
+                                            <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">মুছুন</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Create Tenant Tab -->
+                <div id="create-tenant-tab" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6">ভাড়াটিয়া তৈরি করুন</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <form>
+                            <div class="mb-6">
+                                <label class="block text-gray-700 mb-2 font-medium">ফ্ল্যাট নির্বাচন করুন <span class="text-red-500">*</span></label>
+                                <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    <option value="">ফ্ল্যাট নির্বাচন করুন</option>
+                                    <option value="a-2">এ-২ (গ্রীন ভিউ) - খালি</option>
+                                    <option value="b-3">বি-৩ (রিভারসাইড) - খালি</option>
+                                    <option value="c-1">সি-১ (সানফ্লাওয়ার) - খালি</option>
+                                </select>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">ভাড়াটিয়ার নাম <span class="text-red-500">*</span></label>
+                                        <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">ভাড়ার ধরন <span class="text-red-500">*</span></label>
+                                        <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                            <option value="">নির্বাচন করুন</option>
+                                            <option value="bachelor">ব্যাচেলর</option>
+                                            <option value="family">পরিবার</option>
+                                            <option value="office">অফিস</option>
+                                        </select>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">অ্যাডভান্স পরিমাণ (৳) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">মোবাইল নম্বর <span class="text-red-500">*</span></label>
+                                        <input type="text" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">ঠিকানা <span class="text-red-500">*</span></label>
+                                        <textarea class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3"></textarea>
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">এনআইডি (সামনের পৃষ্ঠা)</label>
+                                        <input type="file" class="w-full px-4 py-2 border rounded-lg">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">এনআইডি (পিছনের পৃষ্ঠা)</label>
+                                        <input type="file" class="w-full px-4 py-2 border rounded-lg">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
+                                <div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">ফ্ল্যাট আসনের তারিখ <span class="text-red-500">*</span></label>
+                                        <input type="date" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">মাসিক ভাড়া (৳) <span class="text-red-500">*</span></label>
+                                        <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">পাসওয়ার্ড <span class="text-red-500">*</span></label>
+                                        <input type="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                    <div class="mb-4">
+                                        <label class="block text-gray-700 mb-2 font-medium">পাসওয়ার্ড নিশ্চিত করুন <span class="text-red-500">*</span></label>
+                                        <input type="password" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mt-8 flex justify-end">
+                                <button type="submit" class="bg-green-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-green-700">ভাড়াটিয়া তৈরি করুন</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Tenant List Tab -->
+                <div id="tenant-list-tab" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6">ভাড়াটিয়া তালিকা</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="p-3 text-left">ভাড়াটিয়ার নাম</th>
+                                        <th class="p-3 text-left">ফ্ল্যাট নং</th>
+                                        <th class="p-3 text-left">বিদ্যুৎ বিলের মাস</th>
+                                        <th class="p-3 text-left">বিদ্যুৎ বিলের পরিমাণ</th>
+                                        <th class="p-3 text-left">বিল কপি</th>
+                                        <th class="p-3 text-left">কার্যক্রম</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="p-3">রহিম</td>
+                                        <td class="p-3">এ-১</td>
+                                        <td class="p-3">নভেম্বর ২০২৩</td>
+                                        <td class="p-3">৳ ১,২০০</td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm">আপলোড</button>
+                                        </td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2">সম্পাদনা</button>
+                                            <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">মুছুন</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3">করিম</td>
+                                        <td class="p-3">বি-১</td>
+                                        <td class="p-3">নভেম্বর ২০২৩</td>
+                                        <td class="p-3">৳ ১,৫০০</td>
+                                        <td class="p-3">
+                                            <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">দেখুন</button>
+                                        </td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2">সম্পাদনা</button>
+                                            <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">মুছুন</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3">সেলিম</td>
+                                        <td class="p-3">সি-২</td>
+                                        <td class="p-3">অক্টোবর ২০২৩</td>
+                                        <td class="p-3">৳ ১,৮০০</td>
+                                        <td class="p-3">
+                                            <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">দেখুন</button>
+                                        </td>
+                                        <td class="p-3">
+                                            <button class="bg-blue-500 text-white px-2 py-1 rounded text-sm mr-2">সম্পাদনা</button>
+                                            <button class="bg-red-500 text-white px-2 py-1 rounded text-sm">মুছুন</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Rent Collection Tab -->
+                <div id="rent-collection-tab" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6">ভাড়া আদায়</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <form>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-gray-700 mb-2 font-medium">বিল্ডিং নির্বাচন করুন <span class="text-red-500">*</span></label>
+                                    <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">বিল্ডিং নির্বাচন করুন</option>
+                                        <option value="green-view">গ্রীন ভিউ</option>
+                                        <option value="riverside">রিভারসাইড</option>
+                                        <option value="sunflower">সানফ্লাওয়ার</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2 font-medium">ফ্ল্যাট ইউনিট <span class="text-red-500">*</span></label>
+                                    <select class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                        <option value="">ফ্ল্যাট নির্বাচন করুন</option>
+                                        <option value="a-1">এ-১</option>
+                                        <option value="a-2">এ-২</option>
+                                        <option value="b-1">বি-১</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 mb-2 font-medium">পরিমাণ (৳) <span class="text-red-500">*</span></label>
+                                    <input type="number" class="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                                </div>
+                            </div>
+                            
+                            <div class="mt-6 flex justify-end">
+                                <button type="submit" class="bg-blue-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-blue-700">ভাড়া আদায় করুন</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Due List Tab -->
+                <div id="due-list-tab" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6">বকেয়া ভাড়ার তালিকা</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="overflow-x-auto">
+                            <table class="w-full">
+                                <thead>
+                                    <tr class="bg-gray-100">
+                                        <th class="p-3 text-left">ফ্ল্যাট নং</th>
+                                        <th class="p-3 text-left">ভাড়াটিয়ার নাম</th>
+                                        <th class="p-3 text-left">বকেয়া মাস</th>
+                                        <th class="p-3 text-left">বকেয়া পরিমাণ</th>
+                                        <th class="p-3 text-left">কার্যক্রম</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr class="border-b">
+                                        <td class="p-3">এ-১</td>
+                                        <td class="p-3">রহিম</td>
+                                        <td class="p-3">নভেম্বর ২০২৩</td>
+                                        <td class="p-3">৳ ১০,০০০</td>
+                                        <td class="p-3">
+                                            <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">ভাড়া আদায়</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3">বি-২</td>
+                                        <td class="p-3">করিম</td>
+                                        <td class="p-3">অক্টোবর ২০২৩</td>
+                                        <td class="p-3">৳ ১২,০০০</td>
+                                        <td class="p-3">
+                                            <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">ভাড়া আদায়</button>
+                                        </td>
+                                    </tr>
+                                    <tr class="border-b">
+                                        <td class="p-3">সি-৩</td>
+                                        <td class="p-3">সেলিম</td>
+                                        <td class="p-3">সেপ্টেম্বর ২০২৩</td>
+                                        <td class="p-3">৳ ১৫,০০০</td>
+                                        <td class="p-3">
+                                            <button class="bg-green-500 text-white px-2 py-1 rounded text-sm">ভাড়া আদায়</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Reports Tab -->
+                <div id="reports-tab" class="tab-content">
+                    <h2 class="text-2xl font-bold mb-6">রিপোর্ট</h2>
+                    
+                    <div class="bg-white rounded-lg shadow-md p-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-3">মাসিক কালেকশন</h3>
+                                <p class="text-gray-600 mb-4">মাসিক ভাড়া আদায়ের রিপোর্ট দেখুন</p>
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded">রিপোর্ট দেখুন</button>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-3">তারিখ অনুযায়ী রিপোর্ট</h3>
+                                <p class="text-gray-600 mb-4">নির্দিষ্ট তারিখ অনুযায়ী রিপোর্ট দেখুন</p>
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded">রিপোর্ট দেখুন</button>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-3">বকেয়া রিপোর্ট</h3>
+                                <p class="text-gray-600 mb-4">বকেয়া ভাড়ার রিপোর্ট দেখুন</p>
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded">রিপোর্ট দেখুন</button>
+                            </div>
+                            <div class="p-4 border rounded-lg">
+                                <h3 class="text-lg font-semibold mb-3">সফটওয়্যার পেমেন্ট ইনভয়েস</h3>
+                                <p class="text-gray-600 mb-4">সফটওয়্যার পেমেন্টের ইনভয়েস দেখুন</p>
+                                <button class="bg-blue-500 text-white px-4 py-2 rounded">ইনভয়েস দেখুন</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8 mt-12">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; ২০২৩ ফ্ল্যাট ইউনিট ব্যবস্থাপনা সিস্টেম - সকল права защищены</p>
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        document.querySelectorAll('.tab-btn').forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all tabs and buttons
+                document.querySelectorAll('.tab-content').forEach(tab => {
+                    tab.classList.remove('active');
+                });
+                document.querySelectorAll('.tab-btn').forEach(btn => {
+                    btn.classList.remove('bg-blue-100', 'text-blue-700');
+                });
+                
+                // Add active class to clicked tab and button
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.add('active');
+                button.classList.add('bg-blue-100', 'text-blue-700');
+            });
+        });
+    </script>
+</body>
+</html>
